@@ -1,0 +1,45 @@
+{% extends "layout.html" %}
+{% block content %}
+{% if orders != None %}
+    
+    <div class="row mb-3">
+        <div class="col">
+            <div class="alert alert-info rounded-0" role="alert">
+                <h6>Jakarta, Past 12 months, Autos & Vehicles</h6>
+                <hr>
+                <p class="mb-0">Whenever you need to, be sure to use margin utilities to keep things nice and tidy. This example text is going to run a bit longer so that you can see how spacing within an alert works with this kind of content. Be sure you’ve loaded the alert plugin, or the compiled Bootstrap JavaScript.</p>
+            </div>
+            <img class="img-thumbnail img-responsive rounded-0 w-100" src="data:image/png;base64,{{ orders }}"\>
+        </div>
+    </div>
+    <div class="row mb-3">
+        <div class="col">
+            <div class="alert alert-info rounded-0" role="alert">
+                <h6>Trends</h6>
+            </div>
+            <img class="img-thumbnail img-responsive rounded-0 w-100" src="data:image/png;base64,{{ plot2 }}"\>
+        </div>
+    </div>
+
+    <div class="row mb-3">
+        <div class="col">
+            <div class="alert alert-info rounded-0" role="alert">
+                <h6>Prediction</h6>
+            </div>
+            <img class="img-thumbnail img-responsive rounded-0 w-100" src="data:image/png;base64,{{ plot2 }}"\>
+        </div>
+    </div>
+
+    <!-- <div class="row mb-3">
+        <div class="col">
+            <p>United States, Past 12 months, Autos & Vehicles</p>
+            <img class="img-thumbnail img-responsive rounded-0" src="data:image/png;base64,{{ orders }}"\>
+        </div>
+        <div class="col">
+            <p>United States, Past 12 months, Autos & Vehicles</p>
+            <img class="img-thumbnail img-responsive rounded-0" src="data:image/png;base64,{{ plot2 }}"\>
+        </div>
+    </div> -->
+
+{% endif %}
+{% endblock content %}

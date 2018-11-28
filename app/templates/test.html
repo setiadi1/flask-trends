@@ -1,0 +1,35 @@
+{% extends "layout.html" %}
+{% block content %}
+    <h5>Test</h5>
+    <!-- <form method="POST" action="">
+        {{ form.text(class="form-control form-control-lg is-invalid") }}
+        {{ form.submit(class="btn btn-outline-info") }}
+        {{ form.hidden_tag() }}
+        {{ text }}
+    </form> -->
+
+    <form>
+        <input id="text" type="text">
+        <button id="submit" type="submit">Submit</button>
+    </form>
+{% endblock content %}
+
+<script>
+    $(function() {
+        $('#submit').click(function() {
+            data = $("text").val();
+            $.ajax({
+                url: '/test',
+                data: data,
+                type: 'POST',
+                success: function(response) {
+                    console.log(response);
+                },
+                error: function(error) {
+                    console.log(error);
+                }
+            });
+            return false;
+        });
+    });
+</script>

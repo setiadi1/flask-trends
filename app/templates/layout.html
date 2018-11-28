@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <!-- Bootstrap CSS, main.css -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='bootstrap.min.css') }}">
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='main.css') }}"> 
+    <link rel="stylesheet" type="text/css" href="static/fontawesome/css/all.css">
+    
+    <script src="{{ url_for('static', filename='jquery.min.js') }}"></script>
+    <!-- <script src="{{ url_for('static', filename='jquery-3.2.1.slim.min.js') }}"></script> -->
+    <link rel="stylesheet" type="text/css" href="{{ url_for('static', filename='datepicker.min.css') }}">
+    <script src="{{ url_for('static', filename='datepicker.min.js') }}"></script>
+
+    {% if title %}
+    <title>Sales Trends - {{ title }}</title>
+    {% else %}
+    <title>Sales Trends</title>
+    {% endif %}
+</head>
+
+<body>
+    <header class="site-header">
+        <nav class="navbar navbar-expand-md navbar-dark bg-steel fixed-top">
+            <div class="container">
+                <a class="navbar-brand mr-4" href="/">Sales Trends</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarToggle" aria-controls="navbarToggle" aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="collapse navbar-collapse" id="navbarToggle">
+                    <div class="navbar-nav mr-auto">
+                        <!-- <a class="nav-item nav-link" href="{{ url_for('trends') }}">Trends</a> -->
+                    </div>
+                    <!-- Navbar Right Side -->
+                    <div class="navbar-nav">
+                        {% if current_user.is_authenticated %}
+                            <!-- <a class="nav-item nav-link" href="{{ url_for('new_post') }}">New Post</a> -->
+                            <a class="nav-item nav-link" href="/">Trends</a>
+                            <a class="nav-item nav-link" href="{{ url_for('about') }}" title="About">About Us</a>
+                            <a class="nav-item nav-link" href="{{ url_for('account') }}">Account</a>
+                            <a class="nav-item nav-link" href="{{ url_for('logout') }}">Logout</a>
+                        {% else %}
+                            <a class="nav-item nav-link" href="{{ url_for('login') }}">Login</a>
+                            <a class="nav-item nav-link" href="{{ url_for('register') }}">Register</a>
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </nav>
+    </header>
+    <main role="main" class="container">
+        <div class="row">
+            <div class="col-md-8">
+                {% with messages = get_flashed_messages(with_categories=true) %} 
+                {% if messages %} 
+                    {% for category, message in messages %}
+                        <div class="alert alert-{{ category }}">
+                            {{ message }}
+                        </div>
+                    {% endfor %} 
+                {% endif %} 
+                {% endwith %} 
+                {% block content %}
+                {% endblock %}
+            </div>
+            <div class="col-md-4">
+                <div class="card rounded-0 w-100 mb-3" style="width: 18rem;">
+                    <div class="card-body">
+                        <h5 class="card-title">Guide</h5>
+                        <p class="card-text">Get started with Sales Trends, and some quick guide to regression, the world’s most popular statistic model to make prediction.</p>
+                        <a href="{{ url_for('guide') }}" class="card-link">More</a>
+                    </div>
+                </div>
+                
+            </div>
+        </div>
+    </main>
+
+    <!-- Optional JavaScript -->
+    <!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    <!-- <script src="{{ url_for('static', filename='jquery-3.2.1.slim.min.js') }}"></script> -->
+    <script src="{{ url_for('static', filename='popper.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='bootstrap.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='ajax.js') }}"></script>
+    <script>
+        $('#order-date-start, #order-date-end').datepicker({
+            format: 'dd-mm-yyyy'
+        });
+    </script>
+</body>
+
+</html>
